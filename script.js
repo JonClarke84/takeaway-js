@@ -30,6 +30,5 @@ function buttonClick() {
   const quantity = parseInt(form.querySelector('input').value)
   const input = form.querySelector('input')
   input.value = quantity + 1
-  console.log(input.value)
 }
 displayMenu(menuList)
