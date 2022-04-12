@@ -21,11 +21,15 @@
           <tr>
             <th>Item</th>
             <th>Price</th>
+            <th>Quantity</th>
           </tr>
           </table>
           <div class="order-total">
-            <label for="total-price">Total price: £</label>
-            <input type="text" id="total-price" value="0" readonly />
+            <form onsubmit="placeOrder()">
+              <label for="total-price">Total price: £</label>
+              <input type="text" id="total-price" value="0" readonly />
+              <input type="submit" class="button" value="Place Order" />
+            </form>
           </div>
         </div>
       </section>

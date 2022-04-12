@@ -1,4 +1,5 @@
 const menuItems = document.getElementById('menu-items')
+const body = document.querySelector('body')
 let totalPrice = document.getElementById('total-price')
 
 const menuList = [
@@ -38,6 +39,12 @@ function buttonClick() {
   input.value = quantity
   orderTotal += parseFloat(price.toFixed(2))
   totalPrice.value = `${orderTotal.toFixed(2)}`
+}
+
+function placeOrder () {
+  const order = document.getElementById('total-price').value
+  body.innerHTML = `<h1>Thank you for your order!</h1>`
+  body.innerHTML += `<p>Your order total is: £${order}</p>`
 }
 
 displayMenu(menuList)

@@ -50,25 +50,19 @@ ul.no-bullets {
 
 .order-total {
   max-width: 75%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: right;
+  text-align: end;
+  padding-right: 4em;
+  padding-top: 2em;
 }
 
-.date-text {
-  margin-left: 20px;
-  font-size: small;
-  font-weight: lighter;
-}
-
-.input {
+input {
   padding: 10px;
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
-.chitter-button {
+button {
   background-color: lightseagreen;
   color: white;
   border: none;
@@ -82,11 +76,11 @@ ul.no-bullets {
   transition-duration: 0.4s;
 }
 
-.chitter-button:hover {
+button:hover {
   background-color: darkred;
 }
 
-.chitter-button:active {
+button:active {
   box-shadow: 0 0 0 0 darkred;
   transform: scale(96%);
 }
