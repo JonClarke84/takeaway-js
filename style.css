@@ -48,28 +48,11 @@ ul.no-bullets {
   margin-top: 75px;
 }
 
-.new-peep {
-  position: fixed;
-  margin-top: 5px;
-  width: 100%;
-  background-color: white;
-  z-index: 1;
-}
-
-.peep-container {
-  border: 1px solid lightgray;
-}
-
-.peep {
-  font-size: large;
-  border-bottom: solid;
-  border-width: 2px;
-  border-color: lightgray;
-  padding: 50px;
-}
-
-.peep-text {
-  text-align: left;
+.order-total {
+  max-width: 75%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
 }
 
 .date-text {
