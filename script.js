@@ -75,7 +75,6 @@ function buttonClick() {
   const input = form.querySelector('input')
 
   addItemToCurrentOrderList(itemName, itemPrice)
-  console.log(currentOrderList)
   input.value = itemQuantity
   orderTotal += itemPrice
   totalPrice.value = `${orderTotal.toFixed(2)}`
@@ -93,7 +92,6 @@ function placeOrder () {
   section.innerHTML = `<h2>Thank you for your order!</h2>`
   printOrderToScreen()
   section.innerHTML += `<p>Your order total is: £${order}</p>`
-  notify()
 }
 
 displayMenu(menuList)
