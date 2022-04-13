@@ -20,7 +20,7 @@ th {
   text-align: left;
 }
 
-ul.no-bullets {
+ol.no-bullets {
   list-style-type: none;
   margin: 0;
   padding: 0;

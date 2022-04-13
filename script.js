@@ -1,5 +1,5 @@
 const menuItems = document.getElementById('menu-items')
-const body = document.querySelector('body')
+const section = document.querySelector('section')
 let totalPrice = document.getElementById('total-price')
 
 const menuList = [
@@ -81,10 +81,18 @@ function buttonClick() {
   totalPrice.value = `${orderTotal.toFixed(2)}`
 }
 
+function printOrderToScreen() {
+  section.innerHTML += `<h2>Your order:</h2>`
+  currentOrderList.forEach(item => {
+    section.innerHTML += `<li>${item.name} x ${item.quantity}</li>`
+  })
+}
+
 function placeOrder () {
   const order = document.getElementById('total-price').value
-  body.innerHTML = `<h1>Thank you for your order!</h1>`
-  body.innerHTML += `<p>Your order total is: £${order}</p>`
+  section.innerHTML = `<h2>Thank you for your order!</h2>`
+  printOrderToScreen()
+  section.innerHTML += `<p>Your order total is: £${order}</p>`
 }
 
 displayMenu(menuList)
