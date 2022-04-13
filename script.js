@@ -15,7 +15,7 @@ const menuList = [
 function displayMenu (menuList) {
   menuList.forEach(item => {
     menuItems.innerHTML += `<tr>
-                        <td>${item.name}</td>
+                        <td class="item-name">${item.name}</td>
                         <td class="price">£${item.price}</td>
                         <form name="${item.name}-button">
                         <td><input type="number" name="total-item-value" value="${item.quantity}" min="0" /></td>
@@ -29,15 +29,55 @@ function convertPriceToFloat (price) {
   return parseFloat(price.replace('£', ''))
 }
 
+
+function checkIfOrderContainsItem(currentOrderList, newItem) {
+  return currentOrderList.some(existingItem => existingItem.name === newItem.name)
+}
+
+function createNewItem(itemName, itemPrice) {
+  return {
+    name: itemName,
+    price: itemPrice,
+    quantity: 1
+  }
+}
+
+function pushItemToCurrentOrderList (itemName, itemPrice) {
+  const newItem = createNewItem(itemName, itemPrice)
+
+  if (checkIfOrderContainsItem(currentOrderList, newItem)) {
+    currentOrderList.forEach(item => {
+      if (item.name === itemName) { item.quantity += 1 }
+    })
+  }
+  else {
+    currentOrderList.push(newItem)
+  }
+}
+
+function addItemToCurrentOrderList(itemName, itemPrice) {
+  if(currentOrderList.length == 0) {
+    currentOrderList.push(createNewItem(itemName, itemPrice))
+  }
+  else {
+    pushItemToCurrentOrderList(itemName, itemPrice)
+  }
+}
+
 let orderTotal = 0.00
+let currentOrderList = []
 
 function buttonClick() {
   const form = event.target.parentNode.parentNode
-  const quantity = parseInt(form.querySelector('input').value) + 1
-  const price = convertPriceToFloat(form.parentNode.querySelector('.price').innerText)
+  const itemName = form.parentNode.querySelector('.item-name').innerText
+  const itemQuantity = parseInt(form.querySelector('input').value) + 1
+  const itemPrice = convertPriceToFloat(form.parentNode.querySelector('.price').innerText)
   const input = form.querySelector('input')
-  input.value = quantity
-  orderTotal += parseFloat(price.toFixed(2))
+
+  addItemToCurrentOrderList(itemName, itemPrice)
+  console.log(currentOrderList)
+  input.value = itemQuantity
+  orderTotal += itemPrice
   totalPrice.value = `${orderTotal.toFixed(2)}`
 }
 
