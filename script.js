@@ -93,6 +93,7 @@ function placeOrder () {
   section.innerHTML = `<h2>Thank you for your order!</h2>`
   printOrderToScreen()
   section.innerHTML += `<p>Your order total is: £${order}</p>`
+  notify()
 }
 
 displayMenu(menuList)
