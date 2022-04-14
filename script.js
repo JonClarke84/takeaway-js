@@ -12,6 +12,19 @@ const menuList = [
   {name: 'Vegan Pizza', price: 12, quantity: 0},
 ]
 
+document.addEventListener("DOMContentLoaded", () => {
+  const addItemButtonsNodeList = document.querySelectorAll(".add-item-button")
+  const addItemButtons = Array.from(addItemButtonsNodeList)
+  // [].forEach.call(addItemButtons, (button) => {
+  //   console.log(button)
+  //   button.addEventListener('click', (Event) => {
+  //   console.log(Event.path[1])
+  //   })
+  // })
+  console.log(addItemButtons)
+})
+
+
 function displayMenu (menuList) {
   menuList.forEach(item => {
     menuItems.innerHTML += `<tr>
@@ -19,11 +32,12 @@ function displayMenu (menuList) {
                         <td class="price">£${item.price}</td>
                         <form name="${item.name}-button">
                         <td><input type="number" name="total-item-value" value="${item.quantity}" min="0" /></td>
-                        <td><button class="add-item" id="${item.name}-button" onclick="buttonClick()">Add Item</button></td>
+                        <td><button class="add-item-button" name="${item.name}-button">Add Item</button></td>
                         </form>
                       </tr>`
   })
 }
+
 
 function convertPriceToFloat (price) {
   return parseFloat(price.replace('£', ''))
