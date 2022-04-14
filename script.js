@@ -13,17 +13,20 @@ const menuList = [
 ]
 
 document.addEventListener("DOMContentLoaded", () => {
-  const addItemButtonsNodeList = document.querySelectorAll(".add-item-button")
-  const addItemButtons = Array.from(addItemButtonsNodeList)
-  // [].forEach.call(addItemButtons, (button) => {
-  //   console.log(button)
-  //   button.addEventListener('click', (Event) => {
-  //   console.log(Event.path[1])
-  //   })
-  // })
-  console.log(addItemButtons)
+  createAddItemButtons()
 })
 
+function createAddItemButtons() {
+  const addItemButtonsNodeList = document.querySelectorAll(".add-item-button")
+  const addItemButtons = Array.from(addItemButtonsNodeList)
+  addItemButtons.forEach( (button) => {
+    button.addEventListener('click', () => {
+      menuList.forEach(item => {
+        if (item.name === button.name) { item.quantity += 1 }
+    })
+  })
+})
+}
 
 function displayMenu (menuList) {
   menuList.forEach(item => {
@@ -32,7 +35,7 @@ function displayMenu (menuList) {
                         <td class="price">£${item.price}</td>
                         <form name="${item.name}-button">
                         <td><input type="number" name="total-item-value" value="${item.quantity}" min="0" /></td>
-                        <td><button class="add-item-button" name="${item.name}-button">Add Item</button></td>
+                        <td><button class="add-item-button" id="${item.name}" name="${item.name}">Add Item</button></td>
                         </form>
                       </tr>`
   })
@@ -44,8 +47,8 @@ function convertPriceToFloat (price) {
 }
 
 
-function checkIfOrderContainsItem(currentOrderList, newItem) {
-  return currentOrderList.some(existingItem => existingItem.name === newItem.name)
+function checkIfOrderContainsItem(menuList, newItemName) {
+  return menuList.some(existingItem => existingItem.name === newItemName)
 }
 
 function createNewItem(itemName, itemPrice) {
